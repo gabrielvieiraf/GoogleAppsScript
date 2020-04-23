@@ -1,9 +1,18 @@
+/*
+  Gabriel Vieira Flores
+  Planilha de Controle de Equipamentos
+  Sensorweb 2020
+*/
+
+//Função que Botão chama ao ser pressionado para adicionar equipamento na planilha
 function InsereEquipamento() {
   var ss = SpreadsheetApp.getActive();
-  var flag;
+  var flag;                                             //Nossa flag é utilizada para saber em qual página devemos trabalhar
   var activitesheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var Celula = activitesheet.getRange(8, 5).getValue();
-  var SN = activitesheet.getRange(9, 5).getValue();
+  var Celula = activitesheet.getRange(8, 5).getValue(); //Verifica valor da Célula em qual página devemos enviar os dados
+  var SN = activitesheet.getRange(9, 5).getValue();     //Verifica valor do Serial Number
+  
+  //Seta flag para mandar dados às páginas desejadas
   switch(Celula) {
     case 'Transmissor':
       flag = 'Transmissores';
@@ -21,13 +30,14 @@ function InsereEquipamento() {
       flag = 'Mobiles';
     break;
   };
-  DesativaFiltro(flag);  
-  CriaLinha('9',flag);
-  Atualiza('A9:B9','B9','Menu!E06:E07');
+  
+  DesativaFiltro(flag);  //Chama função que desativa o filtro presente na página inticada por "flag" para inserir um novo dado
+  CriaLinha('9',flag);   //Cria uma nova linha na posição 9 na página cuja flag foi setada
+  Atualiza('A9:B9','B9','Menu!E06:E07'); //Funções que atualizam a Página
   Atualiza('C9:G9','G9','Menu!E09:E13');
-  ss.getRange('A09:G09').clearDataValidations();
-  ss.getRange(flag +'!E9').setDataValidation(SpreadsheetApp.newDataValidation().setAllowInvalid(true).requireValueInRange(ss.getRange('Listas!$E$4:$E$6'), true).build());
-  MensagemAtualizacao(flag,Celula);
+  ss.getRange('A09:G09').clearDataValidations(); //Limpa validação condicional
+  ss.getRange(flag +'!E9').setDataValidation(SpreadsheetApp.newDataValidation().setAllowInvalid(true).requireValueInRange(ss.getRange('Listas!$E$4:$E$6'), true).build()); // Recria Validação condicional
+  MensagemAtualizacao(flag,Celula); //Chama função para mensagem de conclusão de uma gravação
   InsereFiltro(flag);
 };
 
@@ -45,6 +55,7 @@ function CriaLinha(Linha,flag) {
   SpreadsheetApp.getActive().getActiveRange().offset(0, 0, 1, SpreadsheetApp.getActive().getActiveRange().getNumColumns()).activate();
 };
 
+//Função para mensagem de conclusão de uma gravação
 function MensagemAtualizacao(flag,Celula) {
   if (flag == 'Centrais')
     Browser.msgBox("Concluído","Central foi adicionada à Planilha",Browser.Buttons.OK);
@@ -78,6 +89,7 @@ function MensagemAtualizacao(flag,Celula) {
       spreadsheet.getActiveSheet().getFilter().setColumnFilterCriteria(Coluna, criteria);
 };
 
+//Funções para botões da planilha
 function PesquisaSN() {
   var SN = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet().getRange(5, 4).getValue();
   CriaPesquisa(3,SN,0);
@@ -97,6 +109,7 @@ function total() {
   spreadsheet.getActiveSheet().getFilter().removeColumnFilterCriteria(3);
 };
 
+//Função que desativa filtro
 function DesativaFiltro(flag) {
   var spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.setActiveSheet(spreadsheet.getSheetByName(flag), true);
@@ -104,6 +117,7 @@ function DesativaFiltro(flag) {
   spreadsheet.getActiveSheet().getFilter().remove();
 };
 
+//Função que insere o filtro novamente
 function InsereFiltro(flag) {
   var spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.setActiveSheet(spreadsheet.getSheetByName(flag), true);
