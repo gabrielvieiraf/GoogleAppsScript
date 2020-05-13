@@ -1,25 +1,40 @@
-  function CriaPesquisa (Coluna,Pesquisa,flag){
+/*
+Exemplo de uso do filtro:
+ O primeiro argumento da função será a coluna em que você deseja pesquisar 
+ O segundo será o que você deseja pesquisar na coluna. Lembre-se de colocar o texto entre aspas
+ Exemplo: "Insira seu texto" 
+ Por padrão, foi definido que um rangem que já contenha um filtro será flag = 1
+ E um sem filtro será flag = 0
+ Por último, você colocará o range de sua pesquisa. Um truque que você pode usar para fazer 
+ seu range até a última linha, é colocar o endereço da célula depois do " : " sem o número
+ Exemplo: 
+ function Botao(){
+    CriaPesquisa(1,"Arroz",1,"A8:B");
+};
+*/
+
+  function CriaPesquisa (Coluna,Pesquisa,Flag,Range){
   var spreadsheet = SpreadsheetApp.getActive();
-  var activitesheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var ValorCelula = SpreadsheetApp.getActive().getRange('A1').getValue();            //Nome da página estará escrito na célula A1
-  var Pagina = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ValorCelula);    
-  var Limite = Pagina.getLastRow();
-  var flag_ = 0;                                                                     //flag interna que será usada para condição 
+  var Pagina = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ValorCelula); 
   Pagina.getActiveCell();
-  spreadsheet.getRange('A8:G8').activate();                                          //Range da pesquisa
+  spreadsheet.getRange(Range).activate();                                            //Range da pesquisa
   
-  switch(flag){
+  switch(Flag){
     case 0:
-        spreadsheet.getActiveSheet().getFilter().remove();          //Como essa função é usada para uma pesquisa em um range que contém,
-    break;                                                          //filtro, o removeremos primeiramente
+        spreadsheet.getActiveSheet().getFilter().remove(); //Caso haja filtro, ele seráretirado
+    break;                                                          
     case 1:
-      flag_ = 1;
-    }
-  spreadsheet.getRange('A8'+':'+ Limite).activate();
-  spreadsheet.getRange('A8'+':'+ Limite).createFilter();           //Cria filtro entre A8 e Limite
-  var criteria = SpreadsheetApp.newFilterCriteria()                //Cria filtro para pesquisa quando texto é igual ao colocado na variável
-  .whenTextEqualTo(Pesquisa)                                       //Pesquisa
+      var criteria = SpreadsheetApp.newFilterCriteria()    //Cria criterio para pesquisa quando texto é igual ao colocado na variável Pesquisa 
+      .whenTextEqualTo(Pesquisa)                               
+      .build()
+     break;
+   }
+    
+  spreadsheet.getRange(Range).activate();
+  spreadsheet.getRange(Range).createFilter();            //Cria filtro no Range setado
+  var criteria = SpreadsheetApp.newFilterCriteria()      //Cria criterio para pesquisa quando texto é igual ao colocado na variável Pesquisa
+  .whenTextEqualTo(Pesquisa)                                       
   .build();   
-    if(flag_ == 0) 
-      spreadsheet.getActiveSheet().getFilter().setColumnFilterCriteria(Coluna, criteria);
+  spreadsheet.getActiveSheet().getFilter().setColumnFilterCriteria(Coluna, criteria);
 };
