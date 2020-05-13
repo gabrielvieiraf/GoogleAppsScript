@@ -17,7 +17,6 @@
     }
   spreadsheet.getRange('A8'+':'+ Limite).activate();
   spreadsheet.getRange('A8'+':'+ Limite).createFilter();           //Cria filtro entre A8 e Limite
-  spreadsheet.getRange('C8').activate();
   var criteria = SpreadsheetApp.newFilterCriteria()                //Cria filtro para pesquisa quando texto é igual ao colocado na variável
   .whenTextEqualTo(Pesquisa)                                       //Pesquisa
   .build();   
