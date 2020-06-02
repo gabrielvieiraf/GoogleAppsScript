@@ -3,7 +3,7 @@ function doGet(request) {
   var tmp = HtmlService.createTemplateFromFile('Pagina')
   return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
-
+//função que permite a inclusão do Javascript.html e Estilos.html
 function include(filename) {
   return HtmlService.createHtmlOutputFromFile(filename)
       .getContent();
