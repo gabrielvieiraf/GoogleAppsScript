@@ -1,0 +1,45 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="sweetalert2.all.min.js"></script>
+<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script>
+         document.getElementById("Salvar").addEventListener("click",doStuff);
+         
+         function doStuff() {
+         //Você poderia criar um objeto, mas eu fiz o basicão :)
+         var obs = document.getElementById("Observações").value;
+         var data = document.getElementById("Data").value;
+         var Status = document.getElementById("Status").value;
+         var Ocorrencia = document.getElementById("Ocorrência").value;       
+         var SN = document.getElementById("SN").value;
+         var Tipo = document.getElementById("Tipo").value;
+         var Entrada = document.getElementById("Entrada").value;
+         var Modelo =document.getElementById("Modelo").value;
+         google.script.run.InsereEquipamento(Entrada,Modelo,Tipo,SN,Ocorrencia,Status,data,obs);
+         
+           if (Tipo=="Central")
+         {
+             Swal.fire({
+             title: 'Concluído!',
+             text: 'Central incluida com sucesso!',
+             icon: 'success',
+             confirmButtonColor: '#30b0a8',
+             confirmButtonText: 'OK'})
+         }
+         else 
+         {
+             Swal.fire({
+             title: 'Concluído!',
+             text: Tipo +' incluido com sucesso!',
+             icon: 'success',
+             confirmButtonColor: '#30b0a8',
+             confirmButtonText: 'OK'})
+         }
+         
+         }
+         
+         
+</script>
+
+
+
