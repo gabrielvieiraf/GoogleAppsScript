@@ -4,7 +4,7 @@ function doGet(request) {
 }
 
 function userClicked(obs,data,Status,Ocorrencia,SN,Tipo,Entrada) {
-  ss = SpreadSheetApp.openByUrl("Link para sua planilha")
+  ss = SpreadSheetApp.openByUrl("Link para sua planilha");
   Logger.log("No dia: " + data + " O equipamento: " + SN + " Apresentou a ocorrência: " + Ocorrencia );
 }
 
