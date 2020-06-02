@@ -1,6 +1,6 @@
 //Função para rodar a Página
 function doGet(request) {
-  var tmp = HtmlService.createTemplateFromFile('Pagina')
+  var tmp = HtmlService.createTemplateFromFile('index')
   return tmp.evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL);
 }
 //função que permite a inclusão do Javascript.html e Estilos.html
