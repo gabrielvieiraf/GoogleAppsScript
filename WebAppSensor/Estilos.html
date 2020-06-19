@@ -1,0 +1,377 @@
+<style>
+/* Style the header with a grey background and some padding */
+.header {
+  overflow: hidden;
+  background-color: white;
+  padding: 30px 10px;
+}
+
+/* Style the header links */
+.header input {
+  float: left;
+  color: #30b0a8;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header input.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header input:hover {
+  background-color: #30b0a8;
+  color: white;
+}
+
+/* Style the active/current link*/
+.header input.active {
+  background-color: #30b0a8;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Float the link section to the right */
+.header-center {
+  float: center;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+#appearance-select{
+   -webkit-appearance: none;  /* Remove estilo padrão do Chrome */
+   -moz-appearance: none; /* Remove estilo padrão do FireFox */
+   appearance: none; /* Remove estilo padrão do FireFox*/
+   background: #30b0a8;
+   width: 250px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+   height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+   border:1px solid #ddd;
+}
+
+h1{
+   font-family: verdana;
+   font-size: 40px;
+   color: white;
+   font-weight: bold;
+}
+
+.hlinha {
+   font-family: verdana;
+   font-size: 23px;
+   color: #30b0a8;
+   font-weight: bold;
+}
+
+option {
+   font-family: verdana;
+   font-size: 13px;
+   color: black;
+   background: white;
+   text-align: center;
+}
+
+select {
+   width: 150px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+   height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+   text-align:    center;
+   border:        2px solid #e7e9ef;
+   border-radius: 11px;
+   text-align:    center;
+}
+
+.form {
+   width: 150px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+   height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+   border:        2px solid #e7e9ef;
+   border-radius: 11px;
+   text-align:    center;
+}
+
+.pesquisa {
+   width: 350px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+   height:40px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+   border:        2px solid #e7e9ef;
+   border-radius: 11px;
+   text-align:    center;
+   font-size: 14px;
+   color: grey;
+   font-weight: bold;
+}
+
+
+textarea {
+   width: 148px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+   height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+   border:        2px solid #e7e9ef;
+   border-radius: 11px;
+}
+
+body {
+   font-family: verdana;
+   font-size: 18px;
+   color: white;
+   font-weight: bold;
+   background: #30b0a8;
+}
+
+.btn_pesquisar{
+   background:    #ffffff;
+   border:        1px solid #e7e9ef;
+   border-radius: 11px;
+   box-shadow:    0 2px #828282;
+   padding:       10px 15px;
+   color:         #30b0a8;
+   display:       inline-block;
+   font:          normal bold 26px/1 "Open Sans", sans-serif;
+   text-align:    center;
+}
+
+.btn_pesquisar:active {
+	position: relative;
+	top: 5px;
+	box-shadow: none;
+}
+
+.btn_save:active {
+	position: relative;
+	top: 5px;
+	box-shadow: none;
+}
+
+.btn_save{
+   background:    #ffffff;
+   border:        1px solid #e7e9ef;
+   border-radius: 11px;
+   box-shadow:    0 2px #828282;
+   padding:       10px 25px;
+   color:         #30b0a8;
+   display:       inline-block;
+   font:          normal bold 26px/1 "Open Sans", sans-serif;
+   text-align:    center;
+}
+
+table {
+   background:    #ffffff;
+   border:        1px solid #e7e9ef;
+   border-radius: 11px;
+   box-shadow:    0 2px #828282;
+   padding:       10px 25px;
+   color:         #30b0a8;
+}
+
+.backg {
+   background:    #ffffff;
+   border:        1px solid #e7e9ef;
+   border-radius: 11px;
+   text-align: justify;
+   box-shadow:    0 2px #828282;
+   padding:       10px 25px;
+   color:         #30b0a8;
+   width: 800px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+   height: 1000px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+   font-size: 15px;
+}
+
+.fade-in {
+animation: fadeIn ease 2s;
+-webkit-animation: fadeIn ease 2s;
+-moz-animation: fadeIn ease 2s;
+-o-animation: fadeIn ease 2s;
+-ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-moz-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-webkit-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-o-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+@-ms-keyframes fadeIn {
+0% {opacity:0;}
+100% {opacity:1;}
+}
+
+.busca{
+    margin-top: 50px;
+    padding:0px;
+    height: 48px;
+}
+
+#campo_busca{
+    padding-left: 10px;
+    border: 0px solid;
+    border-radius: 5px 0px 0px 5px; 
+    color: black;
+    height: 48px;
+    width: 200px;
+    float: center;
+}
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  height: 48px;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: white;
+  background-size: 100%;
+  color: #30b0a8;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  margin-left: 15px;
+  margin-top: 15px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+/*
+.tooltip .tooltiptext_left {
+  top: -5px;
+  left: 105%;
+  font-size: 12px;
+  box-shadow:    0 2px #828282;
+}
+
+.tooltip .tooltiptext_right {
+  top: -5px;
+  right: 105%;
+  font-size: 12px;
+  box-shadow:    0 2px #828282;
+}
+*/
+/*
+.tooltip .tooltiptext_top {
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip 
+  box-shadow:    0 2px #828282;
+  font-size: 12px;
+}
+ */
+
+.tooltip .tooltiptext {
+  width: 180px;
+  top: 100%;
+  left: 50%;
+  margin-left: -90px; /* Use half of the width (120/2 = 60), to center the tooltip*/
+  box-shadow:  0 2px #828282;
+  font-size: 12px;
+}
+ 
+ 
+ /*Arrows*/
+ 
+/* At the bottom of the tooltip */
+
+.tooltip .tooltiptext_top::after {
+  content: " ";
+  position: absolute;
+  top: 100%; 
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #828282 transparent transparent transparent;
+}
+ /* At the top of the tooltip */
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%; 
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #828282 transparent;
+}
+
+/* To the left of the tooltip*/
+.tooltip .tooltiptext_left::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; 
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #828282 transparent transparent;
+}
+
+ /* To the right of the tooltip */
+.tooltip .tooltiptext_right::after {
+  content: " ";
+  position: absolute;
+  top: 100%;
+  left: 100%; 
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent transparent #828282;
+}
+
+.tooltip .tooltiptext {
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip:hover .tooltiptext {
+  opacity: 1;
+}
+
+.btn_help {
+border-radius: 100%;
+background: white;
+color:#30b0a8;
+height: 28px;
+width: 28px;}
+
+
+
+</style>
