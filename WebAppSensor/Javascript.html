@@ -44,17 +44,27 @@
 </script>
 
 <script>
+
+    document.getElementById("duvida").addEventListener("click", something);
+    function something(){
+    var Tipop =  document.getElementById("Tipop").value;
+    Logger.log(Tipop);}
+    
+    
+</script>
+<script>
     document.getElementById("Pesquisa").addEventListener("click", Pesquisar);
 
     function Pesquisar() {
     var Tipo_pesquisa =  document.getElementById("Tipop").value;
     var SN = document.getElementById("SN_Pesquisa").value;
+    if(Tipo_pesquisa=="Central") {
     
 	if (SN == "Teste") {
 		Swal.fire({
 			title: 'Concluído!',
-			text: 'Parece que o transmissor ' + SN + ' passou pelo setor de operações.',
-			icon: 'success',
+			text: 'Parece que a ' + Tipo_pesquisa +  ' ' + '"' +SN +'"' + ' passou pelo setor de operações.',
+            icon: 'success',
 			showCancelButton: true,
 			confirmButtonColor: '#30b0a8',
 			cancelButtonColor: '#d33',
@@ -71,13 +81,43 @@
 
 		Swal.fire({
 			title: 'Ops!',
-			text: 'Parece que o transmissor ' + SN + ' não passou pelo setor de operações.',
+			text: 'Parece que a '+ Tipo_pesquisa +  ' ' + '"' +SN +'"'+ ' não passou pelo setor de operações.',
 			icon: 'error',
 			confirmButtonColor: '#30b0a8',
 			confirmButtonText: 'OK'
 		})
 	}
 }
-        
+else{
+    
+	if (SN == "Teste") {
+		Swal.fire({
+			title: 'Concluído!',
+			text: 'Parece que o ' + Tipo_pesquisa +  ' ' + '"' +SN +'"' + ' passou pelo setor de operações.',
+            icon: 'success',
+			showCancelButton: true,
+			confirmButtonColor: '#30b0a8',
+			cancelButtonColor: '#d33',
+			cancelButtonText: 'Voltar',
+			confirmButtonText: 'Ir para histórico do equipamento'
+		}).then((result) => {
+			if (result.value) {
+			 google.script.run.CriaPesquisa(3,SN,1,"A8:H", "Transmissores");
+			}
+		})
+	}
+    
+    else {
 
+		Swal.fire({
+			title: 'Ops!',
+			text: 'Parece que o '+ Tipo_pesquisa + ' ' + '"' +SN +'"' + ' não passou pelo setor de operações.',
+			icon: 'error',
+			confirmButtonColor: '#30b0a8',
+			confirmButtonText: 'OK'
+		})
+	}
+
+}
+}
 </script>
