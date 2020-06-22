@@ -2,7 +2,9 @@
 <script src="sweetalert2.all.min.js"></script>
 <!-- Optional: include a polyfill for ES6 Promises for IE11 -->
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
 <script>
+         
          document.getElementById("Salvar").addEventListener("click",doStuff);
          
          function doStuff() {
@@ -36,7 +38,46 @@
              confirmButtonText: 'OK'})
          }
          
-         }
+         }        
          
          
+</script>
+
+<script>
+    document.getElementById("Pesquisa").addEventListener("click", Pesquisar);
+
+    function Pesquisar() {
+    var Tipo_pesquisa =  document.getElementById("Tipop").value;
+    var SN = document.getElementById("SN_Pesquisa").value;
+    
+	if (SN == "Teste") {
+		Swal.fire({
+			title: 'Concluído!',
+			text: 'Parece que o transmissor ' + SN + ' passou pelo setor de operações.',
+			icon: 'success',
+			showCancelButton: true,
+			confirmButtonColor: '#30b0a8',
+			cancelButtonColor: '#d33',
+			cancelButtonText: 'Voltar',
+			confirmButtonText: 'Ir para histórico do equipamento'
+		}).then((result) => {
+			if (result.value) {
+			 google.script.run.CriaPesquisa(3,SN,1,"A8:H", "Transmissores");
+			}
+		})
+	}
+    
+    else {
+
+		Swal.fire({
+			title: 'Ops!',
+			text: 'Parece que o transmissor ' + SN + ' não passou pelo setor de operações.',
+			icon: 'error',
+			confirmButtonColor: '#30b0a8',
+			confirmButtonText: 'OK'
+		})
+	}
+}
+        
+
 </script>
