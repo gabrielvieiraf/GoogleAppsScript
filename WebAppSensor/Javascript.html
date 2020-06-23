@@ -43,21 +43,33 @@
          
 </script>
 
-<script>
 
-    document.getElementById("duvida").addEventListener("click", something);
-    function something(){
-    var Tipop =  document.getElementById("Tipop").value;
-    Logger.log(Tipop);}
-    
-    
-</script>
 <script>
     document.getElementById("Pesquisa").addEventListener("click", Pesquisar);
 
     function Pesquisar() {
     var Tipo_pesquisa =  document.getElementById("Tipop").value;
     var SN = document.getElementById("SN_Pesquisa").value;
+    var flag;    
+    
+    switch(Tipo_pesquisa) {
+    case 'Transmissor':
+      flag = 'Transmissores';
+    break;
+    case 'Central':
+      flag = 'Centrais';
+    break;
+    case 'Repetidor':
+      flag = 'Repetidores';
+    break;
+    case 'Gateway':
+      flag = 'Gateways';
+    break;
+    case 'Mobile':
+      flag = 'Mobiles';
+    break;
+  };
+     
     if(Tipo_pesquisa=="Central") {
     
 	if (SN == "Teste") {
@@ -72,7 +84,8 @@
 			confirmButtonText: 'Ir para histórico do equipamento'
 		}).then((result) => {
 			if (result.value) {
-			 google.script.run.CriaPesquisa(3,SN,1,"A8:H", "Transmissores");
+			 google.script.run.CriaPesquisa(3,SN,0,"A8:H", flag);
+             Logger.log(flag);
 			}
 		})
 	}
@@ -90,7 +103,7 @@
 }
 else{
     
-	if (SN == "Teste") {
+	if (SN == "Arroz") {
 		Swal.fire({
 			title: 'Concluído!',
 			text: 'Parece que o ' + Tipo_pesquisa +  ' ' + '"' +SN +'"' + ' passou pelo setor de operações.',
@@ -102,7 +115,7 @@ else{
 			confirmButtonText: 'Ir para histórico do equipamento'
 		}).then((result) => {
 			if (result.value) {
-			 google.script.run.CriaPesquisa(3,SN,1,"A8:H", "Transmissores");
+			 google.script.run.CriaPesquisa(3,SN,0,"A8:H", flag);
 			}
 		})
 	}
