@@ -4,15 +4,6 @@
 //
 // --------------------------------------------------------------------------------------------------
 
-// custom menu
-function onOpen() {
-  var ui = SpreadsheetApp.getUi();
-  ui.createMenu('Custom iTunes Menu')
-      .addItem('Get Artist Data','displayArtistData')
-      .addItem('Get Artist Data','displayArtistData')
-      .addToUi();
-}
-
 function ChamaAPI() {
   
   // Como toda API, o Movidesk API tem uma KEY de acesso, que eles chamam de tokenAPI.
