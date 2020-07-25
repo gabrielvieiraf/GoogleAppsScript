@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <div class="header">
+         <base target="_self">
+         <meta charset="UTF-8">
+         <?!= include('Estilos'); ?>
+         <link type="text/css" rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" id="avia-google-webfont">
+        <?!= include('Header'); ?>
+        <?!= include('res'); ?>
+      </div>
+   </head>
+   <body>
+      <div class= "fade-in">
+      <center>
+      <h1>Controle de Equipamentos</h1>
+      <div class="busca" align="center">
+            <a class="tooltip"><button id="duvida" class="btn_help"><i class="fa fa-question"></i></button>
+              <span class="tooltiptext">Aqui você pode consultar equipamentos que passaram pelo setor de operações.<br>Basta escolher o tipo do equipamento e digitar o SN ou MAC do equipamento que deseja procurar. 🔎</span>
+             </a>
+                  <select class="pesq-select" onchange="att()" id="Tipop">
+                     <option value="Centrais">Centrais</option>
+                     <option value="Transmissores">Transmissores</option>
+                     <option value="Repetidores">Repetidores</option>
+                     <option value="Mobiles">Mobiles</option>
+                  </select>
+            <input id="SN_Pesquisa" class="pesquisa" type="text" placeholder="Digite o SN ou MAC do Equipamento.">
+            <button id="Pesquisa" class="btn_pesquisar" >
+            <i class="fa fa-search"></i>
+            </button> 
+            <div id = "alert_placeholder"></div>
+         </div>
+         
+         <table class="table">
+            <tr>
+               <td>Entrada</td>
+               <td>
+                  <select id="Entrada">
+                     <option value="Campo">Campo</option>
+                     <option value="Cliente">Cliente</option>
+                     <option value="KHOMP">KHOMP</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td>Modelo</td>
+               <td>
+                  <select id="Modelo">
+                     <option value="RTH-20">RTH-20</option>
+                     <option value="RTH-30">RTH-30</option>
+                     <option value="KHOMP-NIT20">KHOMP-NIT20</option>
+                     <option value="KHOMP-NIR21">KHOMP-NIT21</option>
+                     <option value="KHOMP-NIT20">KHOMP-NIR20</option>
+                     <option value="KHOMP-NIR21">KHOMP-NIR21</option>
+                     <option value="Mobile">Mobile</option>
+                  </select>
+               </td>
+            </tr>
+            <br>
+            <tr>
+               <td>Tipo</td>
+               <td>
+                  <select id="Tipo">
+                     <option value="Central">Central</option>
+                     <option value="Transmissor">Transmissor</option>
+                     <option value="Repetidor">Repetidor</option>
+                     <option value="Mobile">Mobile</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td>SN ou MAC</td>
+               <td><input class ="form" type="text" id ="SN">
+            </tr>
+            <tr>
+               <td>Ocorrência</td>
+               <td>
+               <input class ="form" type="text" id ="Ocorrência"></td>
+            </tr>
+            <tr>
+               <td>Status</td>
+               <td>
+                  <select id="Status">
+                     <option value="Manutenção">Manutenção</option>
+                     <option value="Cliente">Cliente</option>
+                     <option value="Estoque">Estoque</option>
+                     <option value="Descontinuado">Descontinuado</option>
+                  </select>
+               </td>
+            </tr>
+            <tr>
+               <td>Data</td>
+               <td><input class="form" type="date" id = "Data"></td>
+            </tr>
+            <tr>
+               <td>Observações</td>
+               <td><textarea id="Observações" rows="6" cols="15"></textarea></td>
+            </tr>
+         </table>
+      <br><br>
+        <script src="https://use.fontawesome.com/62e43a72a9.js"></script>
+         <button id="Salvar" class="button btn_save"><i class="fa fa-save"></i>  Salvar</button>
+         <div id = "alert_placeholder"></div>
+      
+      </center>
+      <br><br>
+      
+       <?!= include('Javascript'); ?>
+       <?!= include('LogicaPgs'); ?>
+    </div>
+   </body>
+</html>
