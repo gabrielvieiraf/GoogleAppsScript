@@ -1,10 +1,9 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-<script src="sweetalert2.all.min.js"></script>
-<!-- Optional: include a polyfill for ES6 Promises for IE11 -->
-<script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+<script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
 
 <script>
-         
+   
          document.getElementById("Salvar").addEventListener("click",doStuff);
          
          function doStuff() {
@@ -13,7 +12,7 @@
          var data = document.getElementById("Data").value;
          var Status = document.getElementById("Status").value;
          var Ocorrencia = document.getElementById("Ocorrência").value;       
-         var SN = document.getElementById("SN").value;
+         var SN = document.getElementById("SN").value.toString().toUpperCase();
          var Tipo = document.getElementById("Tipo").value;
          var Entrada = document.getElementById("Entrada").value;
          var Modelo =document.getElementById("Modelo").value;
@@ -45,92 +44,147 @@
 
 
 <script>
-    document.getElementById("Pesquisa").addEventListener("click", Pesquisar);
 
-    function Pesquisar() {
-    var Tipo_pesquisa =  document.getElementById("Tipop").value;
-    var SN = document.getElementById("SN_Pesquisa").value;
-    var flag;    
-    
-    switch(Tipo_pesquisa) {
-    case 'Transmissor':
-      flag = 'Transmissores';
-    break;
-    case 'Central':
-      flag = 'Centrais';
-    break;
-    case 'Repetidor':
-      flag = 'Repetidores';
-    break;
-    case 'Gateway':
-      flag = 'Gateways';
-    break;
-    case 'Mobile':
-      flag = 'Mobiles';
-    break;
-  };
-     
-    if(Tipo_pesquisa=="Central") {
-    
-	if (SN == "Teste") {
-		Swal.fire({
-			title: 'Concluído!',
-			text: 'Parece que a ' + Tipo_pesquisa +  ' ' + '"' +SN +'"' + ' passou pelo setor de operações.',
-            icon: 'success',
-			showCancelButton: true,
-			confirmButtonColor: '#30b0a8',
-			cancelButtonColor: '#d33',
-			cancelButtonText: 'Voltar',
-			confirmButtonText: 'Ir para histórico do equipamento'
-		}).then((result) => {
-			if (result.value) {
-			 google.script.run.CriaPesquisa(3,SN,0,"A8:H", flag);
-             Logger.log(flag);
-			}
-		})
-	}
-    
-    else {
+  var dado = [];
+  
+function CarregaDados(Tipo) {
 
-		Swal.fire({
-			title: 'Ops!',
-			text: 'Parece que a '+ Tipo_pesquisa +  ' ' + '"' +SN +'"'+ ' não passou pelo setor de operações.',
-			icon: 'error',
-			confirmButtonColor: '#30b0a8',
-			confirmButtonText: 'OK'
-		})
-	}
+google.script.run.withSuccessHandler( function (retorna_dado) {
+if ( retorna_dado == null )
+{
+console.log("erro ao ler planilha " + retorna_dado);
 }
-else{
-    
-	if (SN == "Arroz") {
-		Swal.fire({
-			title: 'Concluído!',
-			text: 'Parece que o ' + Tipo_pesquisa +  ' ' + '"' +SN +'"' + ' passou pelo setor de operações.',
-            icon: 'success',
-			showCancelButton: true,
-			confirmButtonColor: '#30b0a8',
-			cancelButtonColor: '#d33',
-			cancelButtonText: 'Voltar',
-			confirmButtonText: 'Ir para histórico do equipamento'
-		}).then((result) => {
-			if (result.value) {
-			 google.script.run.CriaPesquisa(3,SN,0,"A8:H", flag);
-			}
-		})
-	}
-    
-    else {
 
-		Swal.fire({
-			title: 'Ops!',
-			text: 'Parece que o '+ Tipo_pesquisa + ' ' + '"' +SN +'"' + ' não passou pelo setor de operações.',
-			icon: 'error',
-			confirmButtonColor: '#30b0a8',
-			confirmButtonText: 'OK'
-		})
-	}
+else {
+dado = retorna_dado.slice();
+}
+
+console.log(retorna_dado);
+console.log(Tipo);
+console.log(dado);
+}).PesquisaDado(Tipo);
+
+
 
 }
+
+
+
+
+function Pesquisa() {
+
+   var SN = document.getElementById("SN_Pesquisa").value.toString().toLowerCase();
+   
+   console.log(SN);
+   
+   var resultadoArr = dado.filter(function(r) {
+   
+      return r[2].toString().toLowerCase().indexOf(SN) !== -1;
+      
+   });
+   
+   console.log(resultadoArr);
+if (dado !== []) {
+Swal.fire({
+  title: '<h1 class="hlinha">Histórico do Equipamento: </h1>',
+  width: 1700,
+  html:
+    '<style>th{border: 5px solid transparent; background-color:#30b0a8; color:white;}tr:hover {background-color: #30b0a8; color:white}td:hover{font-weight: bold; line-height: 25px;}</style>'+
+    '<center><table class="Ptable" style="width:100%"><thead><tr class="tr"><th scope="col">'+
+    '<strong>Entada&nbsp;</strong></th><th scope="col"><strong>&nbsp;Modelo&nbsp;</strong></th>'+
+    '<th scope="col"><strong>&nbsp;SN ou MAC&nbsp;</strong></th><th scope="col"><strong>&nbsp;Ocorrência&nbsp;</strong></th>'+
+    '<th scope= "col"><strong>&nbsp;Status&nbsp;</strong></th><th scope="col"><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Data&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong></th><th scope="col">'+
+    '<strong>&nbsp;Observações&nbsp;</strong></th><th scope="col"><strong>&nbsp;Funcionário</strong></th></tr><tr class="tr"></thead>'+
+    '<tbody id="ResultadoPesquisa" class="tb"></tbody></table></center><template id="Template">'+
+    '<tr><td scope="row" class="Entrada"></td><td class="Modelo"></td><td class="Sn"></td><td class="ocorrencia"></td><td class="status"></td>'+
+    '<td class="data"></td><td class="obs"></td><td class="funcionario"></td></tr></template>',
+ showCloseButton: true,
+  showCancelButton: false,
+  showConfirmButton:false,
+})
 }
+   var caixa =  document.getElementById("ResultadoPesquisa");
+   var template2 =  document.getElementById("Template");
+   var template= template2.content;
+   
+   
+   resultadoArr.forEach(function(r) {
+   
+   var linha = template.cloneNode(true);
+   
+   var Entrada_C = linha.querySelector(".Entrada");
+   var Modelo_C = linha.querySelector(".Modelo");
+   var Sn_C = linha.querySelector(".Sn");
+   var ocorrencia_C = linha.querySelector(".ocorrencia");
+   var status_C = linha.querySelector(".status");
+   var data_C = linha.querySelector(".data");
+   var obs_C = linha.querySelector(".obs");
+   var funcionario_C =  linha.querySelector(".funcionario");
+   
+   Entrada_C.textContent = r[0];
+   Modelo_C.textContent = r[1];
+   Sn_C.textContent = r[2];
+   ocorrencia_C.textContent = r[3];
+   status_C.textContent = r[4];
+   data_C.textContent = r[5];
+   obs_C.textContent= r[6];
+   funcionario_C.textContent=r[7];
+   
+   caixa.appendChild(linha);
+   
+   });
+}
+
+function Teste(e) {
+
+   var Tipo = document.getElementById("Tipop").value;
+   CarregaDados(Tipo);
+   Pesquisa();
+
+   }
+   
+   
+ function att() {
+ 
+   var Tipo = document.getElementById("Tipop").value;
+   CarregaDados(Tipo);
+   
+   
+   let timerInterval
+Swal.fire({
+  title: 'Carregando',
+  timer: 3200,
+  showCancelButton: false,
+  showConfirmButton:false,
+  html:'<br>Aguarde&nbsp;<b></b> segundos.<br><br><center><div class="c-loader"></div></center><style>'+
+  'body { align-items: center; justify-content: center; }'+
+'.c-loader {   animation: is-rotating 1s infinite;  border: 6px solid #e5e5e5;  border-radius: 50%;  border-top-color: #30b0a8;  height: 50px;  width: 50px;' +
+'} @keyframes is-rotating {  to {    transform: rotate(1turn);  }}</style>',
+  onBeforeOpen: () => {
+    timerInterval = setInterval(() => {
+      const content = Swal.getContent()
+      if (content) {
+        const b = content.querySelector('b')
+        if (b) {
+          b.textContent = Math.round(Swal.getTimerLeft()/1000,2)
+        }
+      }
+    }, 100)
+  },
+  onClose: () => {
+    clearInterval(timerInterval)
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log('I was closed by the timer')
+  }
+})
+   
+ }
+ 
+   var Tipo = document.getElementById("Tipop").value;
+   window.onload = CarregaDados(Tipo);
+
+   document.getElementById("Pesquisa").addEventListener("click", Teste);
 </script>
