@@ -11,7 +11,7 @@ function doGet(e)
   {  
     switch(e.parameter.mode)
     {
-      case 'Pagina':
+      case 'Controle':
         setPage('Controle');    
         return HtmlService
         .createTemplateFromFile('Controle')
@@ -54,20 +54,20 @@ function doGet(e)
         .setTitle("teste");
        break;
       default:
-        setPage('Pagina');
+        setPage('Controle');
         return HtmlService
-        .createTemplateFromFile('Pagina')
+        .createTemplateFromFile('Controle')
         .evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-        .setTitle("Pagina");
+        .setTitle("Controle de Equipamentos");
        break;
     }
    }
   
     else
   {
-    setPage('Pagina');
+    setPage('Controle');
     return HtmlService
-    .createTemplateFromFile('Pagina')
+    .createTemplateFromFile('Controle')
     .evaluate()
     .addMetaTag('viewport', 'width=device-width, initial-scale=1')
     .setTitle("Pagina");
