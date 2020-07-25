@@ -12,11 +12,11 @@ function doGet(e)
     switch(e.parameter.mode)
     {
       case 'Pagina':
-        setPage('Pagina');    
+        setPage('Controle');    
         return HtmlService
-        .createTemplateFromFile('Pagina')
+        .createTemplateFromFile('Controle')
         .evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
-        .setTitle("Pagina"); 
+        .setTitle("Controle de Equipamentos"); 
         break;  
       case 'Dashboard':
         setPage('Dashboard');        
@@ -45,6 +45,13 @@ function doGet(e)
         .createTemplateFromFile('Sondas')
         .evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
         .setTitle("Sondas");
+       break;
+         case 'teste':
+         setPage('teste');
+         return HtmlService
+        .createTemplateFromFile('teste')
+        .evaluate().setXFrameOptionsMode(HtmlService.XFrameOptionsMode.ALLOWALL)
+        .setTitle("teste");
        break;
       default:
         setPage('Pagina');
