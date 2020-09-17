@@ -21,5 +21,5 @@ depois de muito ☕☕☕
 </h4>
 
 <p align='center'>
-  <strong><h3 href='https://www.linkedin.com/in/gvieiraf/'>Siga meu LinkedIn!</h3></strong>
+  <strong><a href='https://www.linkedin.com/in/gvieiraf/'>Siga meu LinkedIn!</a></strong>
 </p>
