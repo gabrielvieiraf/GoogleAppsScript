@@ -9,7 +9,7 @@ function ChamaAPI() {
   // Como toda API, o Movidesk API tem uma KEY de acesso, que eles chamam de tokenAPI.
   // Como o próprio nome diz, essa é a chave que permite termos acesso à API.
   
-  var token = "6b388bbb-f56d-4044-a75e-c2342ca76c6a"; //Chave exemplo para teste
+  var token = ""; //Chave exemplo para teste
   
   // Chama a API Movidesk 
   var response = UrlFetchApp.fetch("https://api.movidesk.com/public/v1/tickets?token=" + token + "&$select=id,type,origin,status");
