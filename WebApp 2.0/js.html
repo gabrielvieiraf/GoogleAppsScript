@@ -1,0 +1,43 @@
+   <script type='text/javascript'>
+    $(document).ready( function(){
+        var runner = google.script.run.withFailureHandler(onFailure);
+        console.log(runner);
+        runner.withSuccessHandler(onSuccess).PesquisaDado();
+    });
+    
+    var onSuccess = function(data){
+        var aDataSet = data.slice(1);  // all except header
+        var head = [];  // headers
+        data[0].forEach(function(e){
+            head.push({'sTitle': e});
+        });
+
+        $('#demo').html( '<table cellpadding="0" cellspacing="0" border="0" class="display table-hover" id="example"></table>' );
+
+        $('#example').dataTable( {
+        "aaData": aDataSet,
+        "aoColumns": head,
+        "oLanguage": {
+                    "sProcessing":   "Processando...",
+                    "sLengthMenu":   "Mostrar _MENU_ registros",
+                    "sZeroRecords":  "Não foram encontrados resultados 😱",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                    "sInfoEmpty":    "Nenhum registro 🥺",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Buscar: ",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    }
+                }
+        }) 
+ 
+    }
+    var onFailure = function(err){
+        alert(err.message);
+    }
+    </script>
