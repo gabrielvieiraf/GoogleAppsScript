@@ -1,0 +1,76 @@
+    <script type='text/javascript'>
+    $(document).ready( function(){
+        var runner = google.script.run.withFailureHandler(onFailure);
+        console.log(runner);
+        runner.withSuccessHandler(onSuccess).PesquisaDado();
+    });
+    
+    var onSuccess = function(data){
+        var aDataSet = data.slice(1);  // all except header
+        var head = [];  // headers
+        data[0].forEach(function(e){
+
+        switch (e) {
+
+        /*
+        case 'NOME DA COLUNA':
+           head.push({'sTitle': e, "sClass": "min-phone-l"});
+        break; 
+        */ 
+        case 'DATA':
+           head.push({'sTitle': e, "sClass": "min-phone-l"});
+        break;
+        case 'REGISTRO':
+           head.push({'sTitle': e, "sClass": "min-phone-l"});
+        break;
+        case 'NOME':
+           head.push({'sTitle': e, "sClass": "min-phone-l"});
+        break;
+        case 'MÉDICO':
+           head.push({'sTitle': e, "sClass": "min-phone-l"});
+        break;
+        case 'DIAGNÓSTICO':
+           head.push({'sTitle': e, "sClass": "min-phone-1"});
+        break;
+        case 'ATUALIZAR':
+           head.push({'sTitle': e, "sClass": "min-phone-l"});
+        break;
+        default: 
+            head.push({'sTitle': e, "sClass": "none"}); 
+        }
+        
+        });
+
+        $('#demo').html( '<table cellpadding="0" cellspacing="0" border="0" class="hover display responsive nowrap" id="example" style="width="100%"></table>' );
+
+        $('#example').dataTable( {
+        "aaData": aDataSet,
+        "aoColumns": head,
+        "aLengthMenu":[ [100, 10, 25, 50, -1], [100, 10, 25, 50, "Todos"] ],
+        //"pageLength": 5,
+        //"scrollX": true,
+        "oLanguage": {
+                    "sProcessing":   "Processando...",
+                    "sLengthMenu":   "Mostrar _MENU_ resultados",
+                    "sZeroRecords":  "Não foram encontrados resultados 😱",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ resultados",
+                    "sInfoEmpty":    "Nenhum pedido encontrado 🥺 😭 😭 ",
+                    "sInfoFiltered": "",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Buscar: ",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    }
+                }
+        }) 
+ 
+ 
+    }
+    var onFailure = function(err){
+        alert(err.message);
+    }
+    </script>
