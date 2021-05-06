@@ -1,5 +1,5 @@
-# 📊 Scripts para GooglePlanilhas
-Esse repositório tem como objetivo compartilhar com o público meus trabalhos de automação de planilhas Google com Javascript.
+# 📊 Google Apps Script
+Esse repositório tem como objetivo compartilhar com o público meus trabalhos de automação atavés do Google Apps Script com Javascript.
 
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/48156370/81830245-36d37880-9512-11ea-85c1-8773aca6f820.gif'>
