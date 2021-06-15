@@ -6,10 +6,10 @@ Esse repositório tem como objetivo compartilhar com o público meus trabalhos d
 </p>
   
 # 📁 Pastas
-A pasta "Utilitarios" contém funções úteis no dia a dia, para você não perder muito tempo fazendo as coisas do zero sempre que for
-criar um novo projetinho. 
-Nela você encontrará funções para criar filtros, integração de hiperlinks em botão, pesquisa na planilha e muito mais. Todas elas genéricas, para que você possa integrá-las sem dificuldades.
-A pasta "WebApp" você verá um de meus projetos de API que integra o google planilhas à uma página HTML, um projetinho charmoso que têm diversas aplicações no dia-a-dia.
+- A pasta "API" contém integrações de API's com o Google Apps Script. 
+- A pasta "GoogleSheets" contém automações com o Google Sheets que utilizam o Google Apps Script, como: funções para criar filtros, integração de hiperlinks em botão, pesquisa na planilha e muito mais. Todas elas genéricas, para que você possa integrá-las sem dificuldades.
+- A pasta "WebApp 2.0" você verá um de meus projetos que integra o google planilhas à uma página HTML, um projetinho charmoso que têm diversas aplicações no dia-a-dia.
+- A pasta "GoogleCalendar" contém automações com o Google Appps Script que envolvem o Google Calendar.
 
 <p align='center'>
   <img src='https://user-images.githubusercontent.com/48156370/81830717-ce38cb80-9512-11ea-8e3d-a67611fb7b73.gif'>
