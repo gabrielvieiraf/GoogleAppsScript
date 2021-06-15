@@ -20,7 +20,7 @@ function enviaEmails() {
   const numLinhas = 2;
   
   //  A2:B3
-  const dataRange = sheet.getRange(startRow, 1, numLinhas, 2);
+  const dataRange = sheet.getRange(linhaInicio 1, numLinhas, 2);
   
   // Pegando valores que estão no range
   const dado = dataRange.getValues();
