@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <?!= include('Links'); ?>
+    <?!= include('Estilos'); ?>
+    <?!= include('Sidenav'); ?>
+  </head>
+  <body>
+
+    <div class="container-xxl" style="margin-left:300px;" aling="right">
+      <div class="row">
+        <div class="col-md-4" style="margin-top:100px;">
+         <form id="formulario">
+
+          <!-----  Provider Name ----->     
+          
+          <div class="form-group col-12" style="margin-top=20px;">
+            <label for="exampleInputEmail1">Provider Name</label>
+            <select class="form-control" id="provider_name"></select>
+         </div>
+        
+          <!-----  Category ----->     
+          
+          <div class="form-group col-12" style="margin-top=20px;">
+            <label for="exampleInputEmail1">Category</label>
+            <select class="form-control" id="category"></select>
+         </div>
+         
+         <!-----  UK Region ----->
+            
+           <div class="form-group col-12" style="margin-top=20px;">
+            <label for="exampleInputEmail1">UK Region</label>
+            <select class="form-control" id="uk_region"></select>
+         </div>
+         
+         <!-----  Postal District Area ----->
+         
+          <div class="form-group col-12" style="margin-top=20px;">
+            <label for="exampleInputEmail1">Postal District Area</label>
+            <select class="form-control" id="postal_area"></select>
+         </div>
+
+        <!-----  Town ----->
+         
+          <div class="form-group col-12" style="margin-top=20px;">
+            <label for="exampleInputEmail1">Town</label>
+            <select class="form-control" id="town"></select>
+         </div>
+
+         <!-----  Adress ----->
+         
+          <div class="form-group col-12" style="margin-top=20px;">
+            <label for="exampleInputEmail1">Address</label>
+            <select class="form-control" id="address"></select>
+         </div>
+
+         </form>
+         <br>
+         <button style="margin-left: 240px;"
+         class="btn btn-primary col-md-3" id="Pesquisar" onClick='submitDetailsForm()'>Pesquisar</button>
+    </div>
+        <div class="col-md-8" style="margin-left=200px;" align="right">
+
+      <?!= include('Maps_Container'); ?>
+</div>
+    </div>
+    </div>
+  </body>
+</html>
+
+
