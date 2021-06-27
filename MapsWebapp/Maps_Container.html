@@ -1,0 +1,56 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+	integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+	crossorigin="" />
+
+<!-- Make sure you put this AFTER Leaflet's CSS -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+	integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+	crossorigin=""></script>
+
+<div id="mapid" align="right" style="margin-top 300px;">
+</div>
+
+<script>
+	$(document).ready( function(){
+        var filter = 'a';
+        var building = $('#building').val();
+        
+        // Terá que passar uma lista de valores para fazer o filtro 
+        // verificar filtro no gs
+        google.script.run.withSuccessHandler(createMap).middleMap(filter);
+    });
+
+var createMap = function(coord) {
+    
+  var list = coord[0];
+  var markersList = [];
+  var mymap = L.map('mapid').setView(coord[1], 7);
+
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'sk.eyJ1IjoiZ2FicmllbHZmIiwiYSI6ImNrcWVkMDJxbDE4cjcycm4wenB0MnFiOTEifQ.NO20Pa5xgEFbc3AJmG2xsw'
+  }).addTo(mymap);
+
+  var marker;
+
+  var myIcon = L.icon({
+    iconUrl: 'https://user-images.githubusercontent.com/48156370/123530542-eeedc180-d6d1-11eb-96fb-9e4813d31da7.png',
+    iconSize: [30, 30],
+    iconAnchor: [30, 30],
+    popupAnchor: [-3, -76]
+});
+
+  for (var i = 0; i < list.length; i++){
+    marker = L.marker(list[i],{title: coord[2][i], icon: myIcon, oppacity: 0.95, riseOnHover: true}).addTo(mymap);
+    markersList.push(marker);    
+  }
+
+  var group = new L.featureGroup(markersList);
+  mymap.fitBounds(group.getBounds())
+  //marker.bindPopup("<img src='https://s2.glbimg.com/5t-1PKwjyNglWKVwfTRYCOwF8ik=/620x413/smart/e.glbimg.com/og/ed/f/original/2021/06/24/chinapredio.png' width='200px;'>");
+}
+</script>
